@@ -7,9 +7,14 @@ public class DetectedCube : MonoBehaviour
     public Material materialChange;
     Transform childObj;
 
+    AccionClick actionClick;
+    bool inZone = false;
+
     private void Start() {
         //this.GetComponentInChildren<MeshRenderer>().material;
         childObj = this.gameObject.transform.GetChild(0);
+
+        actionClick = FindObjectOfType<AccionClick>();
     }
     private void OnTriggerEnter(Collider other) {
         //Debug.Log("Enter");
@@ -17,21 +22,37 @@ public class DetectedCube : MonoBehaviour
         {
             //Debug.Log("Enter the zone");
             childObj.GetComponentInChildren<MeshRenderer>().material = materialChange;
+
+            inZone = true;
         }
     }
 
-    void OnCollisionEnter(Collision other)
-     {
-         if(other.gameObject.name == "Line")
-         {
-            //Camera.main.GetComponent<AudioSource>().Play();
+    private void OnTriggerExit(Collider other) {
+        if(other.CompareTag("Zone"))
+        {
+            inZone = false;
+        }
+    }
+
+    private void Update() {
+        if (actionClick.canDesroy && inZone)
+        {
             Destroy(gameObject);
+        }
+    }
+
+    // void OnCollisionEnter(Collision other)
+    //  {
+    //      if(other.gameObject.name == "Line")
+    //      {
+    //         //Camera.main.GetComponent<AudioSource>().Play();
+    //         Destroy(gameObject);
   
-             //Instantiate(splashReference, randomPos, transform.rotation);
+    //          //Instantiate(splashReference, randomPos, transform.rotation);
   
-            /* Update Score */
+    //         /* Update Score */
   
-            //scoreReference.text = (int.Parse(scoreReference.text) + 1).ToString();
-         }
-     }
+    //         //scoreReference.text = (int.Parse(scoreReference.text) + 1).ToString();
+    //      }
+    //  }
 }

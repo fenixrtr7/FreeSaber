@@ -20,8 +20,8 @@ public class SpawnerCubes : MonoBehaviour
     void Update()
     {
         if(timer>beat){
-			int randomNumPoint = Random.Range(0,2);
-			//Debug.Log("Random Point: " + randomNumPoint);
+			int randomNumPoint = Random.Range(0,cubeObj.Length);
+			Debug.Log("Random Point: " + randomNumPoint);
 
 			// if (randomNumPoint == 1)
 			// {
@@ -31,9 +31,9 @@ public class SpawnerCubes : MonoBehaviour
 			// 	numCube = 0;
 			// }
 
-			GameObject cube = Instantiate(cubeObj[randomNumPoint],points[randomNumPoint]);
+			GameObject cube = Instantiate(cubeObj[randomNumPoint],points[0]);
 			cube.transform.localPosition = Vector3.zero;
-			cube.transform.Rotate(transform.forward,90*Random.Range(0,4));
+			//cube.transform.Rotate(transform.forward,90*Random.Range(0,4));
 			timer -= beat;
 		}
 		timer += Time.deltaTime;

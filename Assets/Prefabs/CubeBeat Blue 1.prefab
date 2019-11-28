@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755674104590947222}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.289, z: 0.267}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.285, y: 0.285, z: -0}
   m_LocalScale: {x: 0.1, y: 0.5, z: 0.40510195}
   m_Children: []
   m_Father: {fileID: 3586566028937612954}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &7479397150741869848
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 7135116215555923087}
   - component: {fileID: -8214934471488179317}
   m_Layer: 0
-  m_Name: CubeBeat Blue
+  m_Name: CubeBeat Blue 1
   m_TagString: CubeL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
