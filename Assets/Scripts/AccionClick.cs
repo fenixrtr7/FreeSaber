@@ -32,13 +32,13 @@ public class AccionClick : MonoBehaviour
 
     public void ClickBoton() {
         iniPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
-        //Debug.Log("Inicial " + iniPosition);
+        Debug.Log("Inicial " + iniPosition);
         canDesroy = true;
     }
 
     public void EndClick() {
         endPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
-        //Debug.Log("End " + endPosition);
+        Debug.Log("End " + endPosition);
         canDesroy = false;
     }
 }
