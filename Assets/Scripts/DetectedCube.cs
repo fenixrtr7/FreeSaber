@@ -9,6 +9,7 @@ public class DetectedCube : MonoBehaviour
 
     AccionClick actionClick;
     bool inZone = false;
+    int points = 1;
 
     private void Start() {
         //this.GetComponentInChildren<MeshRenderer>().material;
@@ -38,6 +39,9 @@ public class DetectedCube : MonoBehaviour
         if (actionClick.canDesroy && inZone)
         {
             Destroy(gameObject);
+
+             // Add Point
+             UI_Manager.sharedInstance.AddPoint(points);
         }
     }
 
