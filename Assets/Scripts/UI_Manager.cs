@@ -13,12 +13,13 @@ public class UI_Manager : MonoBehaviour
     public Text timeText;
     float timeGame = 60;
 
-    private void Awake() 
+    private void Awake()
     {
         if (sharedInstance == null)
         {
             sharedInstance = this;
-        }else
+        }
+        else
         {
             Destroy(gameObject);
         }
@@ -33,14 +34,20 @@ public class UI_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeText.text = "Time: " + timeGame.ToString("0.0");
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame)
+        {
+            timeText.text = "Time: " + timeGame.ToString("0.0");
 
-        if (timeGame <= 0)
-        {
-            timeGame = 0;
-        }else
-        {
-            timeGame -= Time.deltaTime;
+            if (timeGame <= 0)
+            {
+                timeGame = 0;
+
+                GameManager.sharedInstance.GameOver();
+            }
+            else
+            {
+                timeGame -= Time.deltaTime;
+            }
         }
     }
 

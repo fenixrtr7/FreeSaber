@@ -13,29 +13,29 @@ public class CutCube : MonoBehaviour
     // Update is called once per frame
     void Update()
 {
-    if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began))
-    {
-        Ray raycast = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-        RaycastHit raycastHit;
-        if (Physics.Raycast(raycast, out raycastHit))
-        {
-            Debug.Log("Something Hit");
-            // if (raycastHit.collider.name == "Soccer")
-            // {
-            //     Debug.Log("Soccer Ball clicked");
-            // }
+    // if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began))
+    // {
+    //     Ray raycast = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+    //     RaycastHit raycastHit;
+    //     if (Physics.Raycast(raycast, out raycastHit))
+    //     {
+    //         Debug.Log("Something Hit");
+    //         // if (raycastHit.collider.name == "Soccer")
+    //         // {
+    //         //     Debug.Log("Soccer Ball clicked");
+    //         // }
 
-            //OR with Tag
+    //         //OR with Tag
 
-            if (raycastHit.collider.CompareTag("CubeL"))
-            {
-                Debug.Log("CubeL");
-            }
-            else if (raycastHit.collider.CompareTag("CubeR"))
-            {
-                Debug.Log("CubeR");
-            }
-        }
-    }
+    //         if (raycastHit.collider.CompareTag("CubeL"))
+    //         {
+    //             Debug.Log("CubeL");
+    //         }
+    //         else if (raycastHit.collider.CompareTag("CubeR"))
+    //         {
+    //             Debug.Log("CubeR");
+    //         }
+    //     }
+    // }
 }
 }

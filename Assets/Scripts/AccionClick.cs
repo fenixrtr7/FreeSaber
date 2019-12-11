@@ -19,6 +19,7 @@ public class AccionClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Temporizador para devolver a flaso valor
         if (canDesroy)
         {
             timePass += Time.deltaTime;
