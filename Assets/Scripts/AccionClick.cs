@@ -33,13 +33,27 @@ public class AccionClick : MonoBehaviour
 
     public void ClickBoton() {
         iniPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
-        Debug.Log("Inicial " + iniPosition);
-        canDesroy = true;
+        //Debug.Log("Inicial " + iniPosition);
     }
 
     public void EndClick() {
         endPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
-        Debug.Log("End " + endPosition);
-        canDesroy = false;
+        //Debug.Log("End " + endPosition);
+        CreatePlane();
+    }
+
+    public void CreatePlane() {
+        if((iniPosition.x < 73.5 || iniPosition.x > 109.5) && iniPosition.y < 91 && iniPosition.y > 53
+            && (endPosition.x > 109.5 || endPosition.x < 73.5) && endPosition.y < 91 && endPosition.y > 53) 
+        {
+            Debug.Log("Podemos destruirlo HORIZONTAL");
+            //canDesroy = true;
+        }
+        else if((iniPosition.y > 91 || iniPosition.y < 53) && iniPosition.x > 73.5 && iniPosition.x < 109.5
+            && (endPosition.y < 53 || endPosition.y > 91 ) && endPosition.x > 73.5 && endPosition.x < 109.5)
+        {
+            Debug.Log("Podemos destruirlo VERTICAL");
+            //canDesroy = true;
+        }
     }
 }

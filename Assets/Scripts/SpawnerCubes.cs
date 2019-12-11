@@ -24,7 +24,7 @@ public class SpawnerCubes : MonoBehaviour
             if (timer > beat)
             {
                 int randomNumPoint = Random.Range(0, cubeObj.Length);
-                Debug.Log("Random Point: " + randomNumPoint);
+                //Debug.Log("Random Point: " + randomNumPoint);
 
                 // if (randomNumPoint == 1)
                 // {
