@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -52,6 +53,11 @@ public class GameManager : MonoBehaviour
     public void BackToMenu()
     {
         SetGameState(GameState.menu);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // Cambiar estado de juego
