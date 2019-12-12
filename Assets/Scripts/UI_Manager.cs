@@ -9,6 +9,10 @@ public class UI_Manager : MonoBehaviour
     [Header("Score")]
     public Text scoreText;
     int scoreGame = 0;
+    public GameObject cuboIndicadorWin;
+    public Material materialACambiarGood, materialBad;
+    public Material materialActual;
+    Material actualMaterial;
     [Header("Time")]
     public Text timeText;
     float timeGame = 120;
@@ -53,7 +57,27 @@ public class UI_Manager : MonoBehaviour
 
     public void AddPoint(int pointsToAdd)
     {
+        if(pointsToAdd > 0)
+        {
+            //Cambiamos el material del cubo
+            cuboIndicadorWin.GetComponent<MeshRenderer> ().material = materialACambiarGood;
+
+            Debug.Log("Funciona");
+        }
+        else if(pointsToAdd < 0)
+        {
+            cuboIndicadorWin.GetComponent<MeshRenderer> ().material = materialBad;
+            Debug.Log("Funciona x2");
+        }
         scoreGame += pointsToAdd;
         scoreText.text = "Score: " + scoreGame;
+        StartCoroutine(BackMaterial());
+    }
+
+    IEnumerator BackMaterial()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        cuboIndicadorWin.GetComponent<MeshRenderer> ().material = materialActual;
     }
 }

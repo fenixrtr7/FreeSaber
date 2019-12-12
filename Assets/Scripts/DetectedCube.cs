@@ -11,8 +11,8 @@ public class DetectedCube : MonoBehaviour
     bool inZone = false;
 
     // Points
-    int points = 10;
-    int penalization = -20;
+    int points = 20;
+    int penalization = -10;
 
     public bool isVertical = true;
 

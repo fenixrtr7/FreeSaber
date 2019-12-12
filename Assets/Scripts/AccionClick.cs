@@ -15,7 +15,7 @@ public class AccionClick : MonoBehaviour
     public bool canDesroy = false;
     float timePass = 0; 
     // Tiempo limite para ya no contar
-    public float timeLimit = 0.5f;
+    public float timeLimit = 0.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -62,20 +62,20 @@ public class AccionClick : MonoBehaviour
         float distanciaX = Vector3.Distance(new Vector3(iniPosition.x,0,0), new Vector3(endPosition.x,0,0));
         float distanciaY = Vector3.Distance(new Vector3(0,iniPosition.y,0), new Vector3(0,endPosition.y,0));
 
-        Debug.Log("X: " + distanciaX + " Y: " + distanciaY);
+        //Debug.Log("X: " + distanciaX + " Y: " + distanciaY);
 
         // Si nos desplazamos mas sobre el eje x = corte horizontal
         if (distanciaX > distanciaY)
         {
             canDesroy = true;
             cubeHorizontal = true;
-            Debug.Log("Podemos destruirlo Horizontal");
+            //Debug.Log("Podemos destruirlo Horizontal");
         }
         else if (distanciaX < distanciaY)
         {
             canDesroy = true;
             cubeVertical = true;
-            Debug.Log("Podemos destruirlo Vertical");
+            //Debug.Log("Podemos destruirlo Vertical");
         }
 
         // if (iniPosition.y > endPosition.y || iniPosition.y < endPosition.y)
