@@ -9,7 +9,12 @@ public class DetectedCube : MonoBehaviour
 
     AccionClick actionClick;
     bool inZone = false;
-    int points = 1;
+
+    // Points
+    int points = 10;
+    int penalization = -20;
+
+    public bool isVertical = true;
 
     private void Start() {
         //this.GetComponentInChildren<MeshRenderer>().material;
@@ -35,13 +40,33 @@ public class DetectedCube : MonoBehaviour
         }
     }
 
-    private void Update() {
-        if (actionClick.canDesroy && inZone)
+    private void Update() 
+    {
+        if (isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy)
         {
             Destroy(gameObject);
 
              // Add Point
              UI_Manager.sharedInstance.AddPoint(points);
+        }
+        else if (!isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy)
+        {
+            Destroy(gameObject);
+
+             // Add Point
+             UI_Manager.sharedInstance.AddPoint(points);
+        }
+        else if (!isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy)
+        {
+            Destroy(gameObject);
+
+            UI_Manager.sharedInstance.AddPoint(penalization);
+        }
+        else if (isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy)
+        {
+            Destroy(gameObject);
+            
+            UI_Manager.sharedInstance.AddPoint(penalization);
         }
     }
 

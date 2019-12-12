@@ -107,8 +107,8 @@ GameObject:
   - component: {fileID: 7135116215555923087}
   - component: {fileID: -8214934471488179317}
   m_Layer: 0
-  m_Name: CubeBeat Blue 1
-  m_TagString: CubeL
+  m_Name: CubeBeat Blue Horizontal
+  m_TagString: CuboH
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialChange: {fileID: 2100000, guid: 86de4e59355f35d4893a16000ab151f0, type: 2}
+  isVertical: 0
 --- !u!54 &-8214934471488179317
 Rigidbody:
   m_ObjectHideFlags: 0

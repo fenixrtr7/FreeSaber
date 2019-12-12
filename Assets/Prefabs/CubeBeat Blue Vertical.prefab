@@ -107,8 +107,8 @@ GameObject:
   - component: {fileID: 7135116215555923087}
   - component: {fileID: -8214934471488179317}
   m_Layer: 0
-  m_Name: CubeBeat Blue
-  m_TagString: CubeL
+  m_Name: CubeBeat Blue Vertical
+  m_TagString: CuboV
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

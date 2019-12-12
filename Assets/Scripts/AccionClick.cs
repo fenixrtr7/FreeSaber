@@ -8,14 +8,14 @@ public class AccionClick : MonoBehaviour
     Vector3 endPosition;
 
     [HideInInspector]
+    public bool cubeVertical = false;
+    [HideInInspector]
+    public bool cubeHorizontal = false;
+    [HideInInspector]
     public bool canDesroy = false;
-    float timePass = 0, timeLimit = 0.5f;
-
-    // Tolerancia
-    public float tolerancia = 10;
-
-    // Screen size
-    //float mitadScreen = Screen.height / 2;
+    float timePass = 0; 
+    // Tiempo limite para ya no contar
+    public float timeLimit = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +42,10 @@ public class AccionClick : MonoBehaviour
     public void ClickBoton() {
         iniPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
         //Debug.Log("Inicial " + iniPosition);
+        cubeHorizontal = false;
+        cubeVertical = false;
+
+        canDesroy = false;
     }
 
     public void EndClick() {
@@ -51,18 +55,8 @@ public class AccionClick : MonoBehaviour
     }
 
     public void CreatePlane() {
-        // if((iniPosition.x < 73.5 || iniPosition.x > 109.5) && iniPosition.y < 91 && iniPosition.y > 53
-        //     && (endPosition.x > 109.5 || endPosition.x < 73.5) && endPosition.y < 91 && endPosition.y > 53) 
-        // {
-        //     Debug.Log("Podemos destruirlo HORIZONTAL");
+
         //     //canDesroy = true;
-        // }
-        // else if((iniPosition.y > 91 || iniPosition.y < 53) && iniPosition.x > 73.5 && iniPosition.x < 109.5
-        //     && (endPosition.y < 53 || endPosition.y > 91 ) && endPosition.x > 73.5 && endPosition.x < 109.5)
-        // {
-        //     Debug.Log("Podemos destruirlo VERTICAL");
-        //     //canDesroy = true;
-        // }
 
         // Obtener distancias
         float distanciaX = Vector3.Distance(new Vector3(iniPosition.x,0,0), new Vector3(endPosition.x,0,0));
@@ -73,10 +67,14 @@ public class AccionClick : MonoBehaviour
         // Si nos desplazamos mas sobre el eje x = corte horizontal
         if (distanciaX > distanciaY)
         {
+            canDesroy = true;
+            cubeHorizontal = true;
             Debug.Log("Podemos destruirlo Horizontal");
         }
         else if (distanciaX < distanciaY)
         {
+            canDesroy = true;
+            cubeVertical = true;
             Debug.Log("Podemos destruirlo Vertical");
         }
 

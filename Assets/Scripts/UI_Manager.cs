@@ -11,7 +11,7 @@ public class UI_Manager : MonoBehaviour
     int scoreGame = 0;
     [Header("Time")]
     public Text timeText;
-    float timeGame = 60;
+    float timeGame = 120;
 
     private void Awake()
     {
