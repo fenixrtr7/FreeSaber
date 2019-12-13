@@ -17,7 +17,7 @@
          lineRenderer = lineGO.GetComponent<LineRenderer>();
         lineRenderer.material = new Material(Shader.Find("Mobile/Particles/Additive"));
         lineRenderer.SetColors(c1, c2);
-        lineRenderer.SetWidth(0.1F, 0);
+        lineRenderer.SetWidth(0.05F, 0);
         lineRenderer.SetVertexCount(0);
     }
      

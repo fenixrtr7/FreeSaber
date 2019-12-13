@@ -16,6 +16,14 @@ public class UI_Manager : MonoBehaviour
     [Header("Time")]
     public Text timeText;
     float timeGame = 120;
+    public ParticleSystem particleObj;
+
+    // Instanciar numeros puntos
+    public GameObject instantiatePoint;
+    public GameObject numberPrefab;
+
+    // Fade
+    public FadeImage fadeImage;
 
     private void Awake()
     {
@@ -57,27 +65,45 @@ public class UI_Manager : MonoBehaviour
 
     public void AddPoint(int pointsToAdd)
     {
+        // Reproducioms particulas
+        
+        // Mostramos en pantalla puntos
+        ShowNumber(pointsToAdd);
+
         if(pointsToAdd > 0)
         {
+            particleObj.Play();
+
             //Cambiamos el material del cubo
             cuboIndicadorWin.GetComponent<MeshRenderer> ().material = materialACambiarGood;
-
-            Debug.Log("Funciona");
+            //Debug.Log("Funciona");
         }
         else if(pointsToAdd < 0)
         {
+            // Fade
+            fadeImage.FadeImageObj();
+
+            //Cambiamos el material del cubo
             cuboIndicadorWin.GetComponent<MeshRenderer> ().material = materialBad;
-            Debug.Log("Funciona x2");
+            //Debug.Log("Funciona x2");
         }
         scoreGame += pointsToAdd;
         scoreText.text = "Score: " + scoreGame;
         StartCoroutine(BackMaterial());
     }
 
+    //Cambiamos materiasl
     IEnumerator BackMaterial()
     {
         yield return new WaitForSeconds(0.2f);
 
         cuboIndicadorWin.GetComponent<MeshRenderer> ().material = materialActual;
+    }
+
+    // Mostramos en pantalla puntos
+    void ShowNumber(int pointsShow)
+    {
+        var clone = (GameObject)Instantiate(numberPrefab, instantiatePoint.transform.position, instantiatePoint.transform.rotation);
+        clone.GetComponent<DamageNumber>().damagePoints = pointsShow;
     }
 }

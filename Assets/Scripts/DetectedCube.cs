@@ -8,6 +8,7 @@ public class DetectedCube : MonoBehaviour
     Transform childObj;
 
     AccionClick actionClick;
+    
     bool inZone = false;
 
     // Points
