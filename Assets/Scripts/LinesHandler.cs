@@ -3,8 +3,11 @@
   
  public class LinesHandler : MonoBehaviour
  {
+     // https://github.com/tutsplus/UnityFruitCutter
+     
      public Color c1 = Color.yellow;
      public Color c2 = Color.red;
+    public Material materialLine;
   
      private GameObject lineGO;
      private LineRenderer lineRenderer;
@@ -15,7 +18,7 @@
          lineGO = new GameObject("Line");
         lineGO.AddComponent<LineRenderer>();
          lineRenderer = lineGO.GetComponent<LineRenderer>();
-        lineRenderer.material = new Material(Shader.Find("Mobile/Particles/Additive"));
+        lineRenderer.material = materialLine;//new Material(Shader.Find("Mobile/Particles/Additive"));
         lineRenderer.SetColors(c1, c2);
         lineRenderer.SetWidth(0.05F, 0);
         lineRenderer.SetVertexCount(0);

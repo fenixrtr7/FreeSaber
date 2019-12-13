@@ -6,25 +6,22 @@ using UnityEngine.UI;
 public class FadeImage : MonoBehaviour
 {
     Image imageFade;
-    public Color currentColor;
 
-    float timeWait = 0.5f;
+    //public Color currentColor;
+    // Tiempo de espera
+    public float timeWait = 0.1f;
     // Start is called before the first frame update
     void Start()
     {
         imageFade = GetComponent<Image>();
-        currentColor = imageFade.color;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //currentColor = imageFade.color;
+        imageFade.CrossFadeAlpha(0,timeWait,true);
     }
 
     public void FadeImageObj()
     {
-        imageFade.color = Color.Lerp(currentColor, Color.white, timeWait);
+        //imageFade.color = Color.Lerp(currentColor, Color.white, timeWait);
+        imageFade.CrossFadeAlpha(1,timeWait,true);
         StartCoroutine(BackFade());
     }
 
@@ -32,8 +29,9 @@ public class FadeImage : MonoBehaviour
     {
         yield return new WaitForSeconds(timeWait);
 
-        Color currentColorRed = imageFade.color;
-        imageFade.color = Color.Lerp(currentColorRed, currentColor, timeWait);
+        //Color currentColorRed = imageFade.color;
+        //imageFade.color = Color.Lerp(currentColorRed, currentColor, timeWait);
+        imageFade.CrossFadeAlpha(0,timeWait,true);
         //Debug.Log("Funciona FADE");
     }
 }

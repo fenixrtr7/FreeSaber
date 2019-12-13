@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: -8214934471488179317}
   m_Layer: 0
   m_Name: CubeBeat Blue Horizontal
-  m_TagString: CuboH
+  m_TagString: Cubo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
