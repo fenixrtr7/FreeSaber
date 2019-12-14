@@ -16,12 +16,15 @@ public class DetectedCube : MonoBehaviour
     int penalization = -10;
 
     public bool isVertical = true;
+    SpawnerLineCube spawnerLineCube;
 
     private void Start() {
         //this.GetComponentInChildren<MeshRenderer>().material;
         childObj = this.gameObject.transform.GetChild(0);
 
         actionClick = FindObjectOfType<AccionClick>();
+
+        spawnerLineCube = FindObjectOfType<SpawnerLineCube>();
     }
     private void OnTriggerEnter(Collider other) {
         //Debug.Log("Enter");
@@ -43,30 +46,21 @@ public class DetectedCube : MonoBehaviour
 
     private void Update() 
     {
-        if (isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy)
+        if ((isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy) || 
+        (!isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy))
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            spawnerLineCube.ChangeZone(gameObject);
 
              // Add Point
              UI_Manager.sharedInstance.AddPoint(points);
         }
-        else if (!isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy)
+        else if ((!isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy) || 
+        (isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy))
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            spawnerLineCube.ChangeZone(gameObject);
 
-             // Add Point
-             UI_Manager.sharedInstance.AddPoint(points);
-        }
-        else if (!isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy)
-        {
-            Destroy(gameObject);
-
-            UI_Manager.sharedInstance.AddPoint(penalization);
-        }
-        else if (isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy)
-        {
-            Destroy(gameObject);
-            
             UI_Manager.sharedInstance.AddPoint(penalization);
         }
     }
