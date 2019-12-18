@@ -8,21 +8,25 @@ public class DetectedCube : MonoBehaviour
     Transform childObj;
 
     AccionClick actionClick;
+    SendPoints sendPoints;
     
     bool inZone = false;
 
-    // Points
-    int points = 20;
     int penalization = -10;
 
     public bool isVertical = true;
     SpawnerLineCube spawnerLineCube;
 
-    private void Start() {
+    // Zones
+    public bool zone1 = false, zone2 = false;
+
+    private void Start() 
+    {
         //this.GetComponentInChildren<MeshRenderer>().material;
         childObj = this.gameObject.transform.GetChild(0);
 
         actionClick = FindObjectOfType<AccionClick>();
+        sendPoints = FindObjectOfType<SendPoints>();
 
         spawnerLineCube = FindObjectOfType<SpawnerLineCube>();
     }
@@ -49,34 +53,20 @@ public class DetectedCube : MonoBehaviour
         if ((isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy) || 
         (!isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy))
         {
-            //Destroy(gameObject);
+            // Cambia de posición al cubo
             spawnerLineCube.ChangeZone(gameObject);
 
              // Add Point
-             UI_Manager.sharedInstance.AddPoint(points);
+             sendPoints.SendPointsScore();
         }
         else if ((!isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy) || 
         (isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy))
         {
-            //Destroy(gameObject);
+            // Cambia de posición al cubo
             spawnerLineCube.ChangeZone(gameObject);
 
+            // Penalizacón
             UI_Manager.sharedInstance.AddPoint(penalization);
         }
     }
-
-    // void OnCollisionEnter(Collision other)
-    //  {
-    //      if(other.gameObject.name == "Line")
-    //      {
-    //         //Camera.main.GetComponent<AudioSource>().Play();
-    //         Destroy(gameObject);
-  
-    //          //Instantiate(splashReference, randomPos, transform.rotation);
-  
-    //         /* Update Score */
-  
-    //         //scoreReference.text = (int.Parse(scoreReference.text) + 1).ToString();
-    //      }
-    //  }
 }

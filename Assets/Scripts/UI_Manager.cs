@@ -10,12 +10,12 @@ public class UI_Manager : MonoBehaviour
     public Text scoreText;
     int scoreGame = 0;
     public GameObject cuboIndicadorWin;
-    public Material materialACambiarGood, materialBad;
+    public Material materialACambiarGood, materialBad, meterialVeryGood;
     public Material materialActual;
     Material actualMaterial;
     [Header("Time")]
     public Text timeText;
-    float timeGame = 120;
+    public float timeGame = 120;
     public ParticleSystem particleObj;
 
     // Instanciar numeros puntos
@@ -70,7 +70,7 @@ public class UI_Manager : MonoBehaviour
         // Mostramos en pantalla puntos
         ShowNumber(pointsToAdd);
 
-        if(pointsToAdd > 0)
+        if(pointsToAdd > 0 && pointsToAdd < 30)
         {
             particleObj.Play();
 
@@ -86,6 +86,14 @@ public class UI_Manager : MonoBehaviour
             //Cambiamos el material del cubo
             cuboIndicadorWin.GetComponent<MeshRenderer> ().material = materialBad;
             //Debug.Log("Funciona x2");
+        }
+        else if(pointsToAdd > 30)
+        {
+            particleObj.Play();
+
+            //Cambiamos el material del cubo
+            cuboIndicadorWin.GetComponent<MeshRenderer> ().material = meterialVeryGood;
+            //Debug.Log("Funciona");
         }
         scoreGame += pointsToAdd;
         scoreText.text = "Score: " + scoreGame;
