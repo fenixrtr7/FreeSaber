@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class ChangePositionParticle : MonoBehaviour
 {
+    public float timeWait = 0.3f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(WaitSeconds());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator WaitSeconds()
     {
-        
+        yield return new WaitForSeconds(timeWait);
+
+        transform.position = new Vector3(-0.1f, 2.07f, -9.71f);
     }
 }

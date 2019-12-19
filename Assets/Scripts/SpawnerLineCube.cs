@@ -42,19 +42,11 @@ public class SpawnerLineCube : MonoBehaviour
         }
     }
 
-    public void RemoveOfList(GameObject objectAdd)
-    {
-        //cubeList.Remove(objectAdd);
-    }
-
-    public void AddToList(GameObject objectAdd)
-    {
-
-    }
-
     public void ChangeZone(GameObject objectChange)
     {
         addPosition += 5;
         objectChange.transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + addPosition); 
+    
+        objectChange.GetComponent<DetectedCube>().ChangeMaterialOriginal();
     }
 }

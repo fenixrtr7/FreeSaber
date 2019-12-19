@@ -5,6 +5,7 @@ using UnityEngine;
 public class DetectedCube : MonoBehaviour
 {
     public Material materialChange;
+    public Material materialActual;
     Transform childObj;
 
     AccionClick actionClick;
@@ -55,6 +56,7 @@ public class DetectedCube : MonoBehaviour
         {
             // Cambia de posición al cubo
             spawnerLineCube.ChangeZone(gameObject);
+            ChangeMaterialOriginal();
 
              // Add Point
              sendPoints.SendPointsScore();
@@ -64,9 +66,15 @@ public class DetectedCube : MonoBehaviour
         {
             // Cambia de posición al cubo
             spawnerLineCube.ChangeZone(gameObject);
+            ChangeMaterialOriginal();
 
             // Penalizacón
             UI_Manager.sharedInstance.AddPoint(penalization);
         }
+    }
+
+    public void ChangeMaterialOriginal()
+    {
+        childObj.GetComponentInChildren<MeshRenderer>().material = materialActual;
     }
 }

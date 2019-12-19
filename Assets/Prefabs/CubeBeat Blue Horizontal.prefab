@@ -198,7 +198,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialChange: {fileID: 2100000, guid: 86de4e59355f35d4893a16000ab151f0, type: 2}
+  materialActual: {fileID: 2100000, guid: 32aa48efd9e5317438c66ba51af678cb, type: 2}
   isVertical: 0
+  zone1: 0
+  zone2: 0
 --- !u!54 &-8214934471488179317
 Rigidbody:
   m_ObjectHideFlags: 0

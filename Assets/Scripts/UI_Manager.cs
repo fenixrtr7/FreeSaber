@@ -12,7 +12,7 @@ public class UI_Manager : MonoBehaviour
     public GameObject cuboIndicadorWin;
     public Material materialACambiarGood, materialBad, meterialVeryGood;
     public Material materialActual;
-    Material actualMaterial;
+    
     [Header("Time")]
     public Text timeText;
     public float timeGame = 120;
