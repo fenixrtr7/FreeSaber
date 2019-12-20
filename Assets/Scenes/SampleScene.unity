@@ -361,10 +361,10 @@ RectTransform:
   m_Father: {fileID: 502247236}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -147.09, y: 410.37}
-  m_SizeDelta: {x: -335.89, y: -866.3}
+  m_AnchorMin: {x: 0.036609367, y: 0.9145026}
+  m_AnchorMax: {x: 0.39461917, y: 0.975}
+  m_AnchoredPosition: {x: 0.91000366, y: -0.13000488}
+  m_SizeDelta: {x: -1.8900146, y: 0.7000122}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &228995641
 MonoBehaviour:
@@ -582,6 +582,23 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 5
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 287504943}
+          m_MethodName: DragClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &287504941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,6 +652,7 @@ MonoBehaviour:
   cubeHorizontal: 0
   canDesroy: 0
   timeLimit: 0.2
+  minimumDistance: 5
 --- !u!1 &413208600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,7 +1175,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.5905e-41, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2152,6 +2170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14c3159673c44b4f9524f92291a6212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeWait: 0.3
 --- !u!1 &1126227245
 GameObject:
   m_ObjectHideFlags: 0
@@ -3263,10 +3282,10 @@ RectTransform:
   m_Father: {fileID: 502247236}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 144.89, y: 404.19}
-  m_SizeDelta: {x: -335.89, y: -866.3}
+  m_AnchorMin: {x: 0.60200006, y: 0.90583426}
+  m_AnchorMax: {x: 0.952, y: 0.9695855}
+  m_AnchoredPosition: {x: 0.8899994, y: -0.30999756}
+  m_SizeDelta: {x: 2.1099854, y: -1.2999878}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1974905799
 MonoBehaviour:

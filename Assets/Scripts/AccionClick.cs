@@ -13,9 +13,11 @@ public class AccionClick : MonoBehaviour
     public bool cubeHorizontal = false;
     [HideInInspector]
     public bool canDesroy = false;
-    float timePass = 0; 
+    float timePass = 0;
     // Tiempo limite para ya no contar
     public float timeLimit = 0.2f;
+    // Distancia minima para drag
+    public float minimumDistance = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +41,8 @@ public class AccionClick : MonoBehaviour
         }
     }
 
-    public void ClickBoton() {
+    public void ClickBoton()
+    {
         iniPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
         //Debug.Log("Inicial " + iniPosition);
         cubeHorizontal = false;
@@ -48,40 +51,54 @@ public class AccionClick : MonoBehaviour
         canDesroy = false;
     }
 
-    public void EndClick() {
+    public void EndClick()
+    {
         endPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
         //Debug.Log("End " + endPosition);
         CreatePlane();
     }
 
-    public void CreatePlane() {
+    public void DragClick()
+    {
+        endPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
+        //Debug.Log("Estamos en drag: " + endPosition);
+        CreatePlane();
+
+        StartCoroutine(WaitTimeDrag());
+        //endPosition = null;
+    }
+
+    IEnumerator WaitTimeDrag()
+    {
+        yield return new WaitForSeconds(0.1f);
+    }
+
+    public void CreatePlane()
+    {
 
         //     //canDesroy = true;
 
         // Obtener distancias
-        float distanciaX = Vector3.Distance(new Vector3(iniPosition.x,0,0), new Vector3(endPosition.x,0,0));
-        float distanciaY = Vector3.Distance(new Vector3(0,iniPosition.y,0), new Vector3(0,endPosition.y,0));
+        float distanciaX = Vector3.Distance(new Vector3(iniPosition.x, 0, 0), new Vector3(endPosition.x, 0, 0));
+        float distanciaY = Vector3.Distance(new Vector3(0, iniPosition.y, 0), new Vector3(0, endPosition.y, 0));
 
-        //Debug.Log("X: " + distanciaX + " Y: " + distanciaY);
-
-        // Si nos desplazamos mas sobre el eje x = corte horizontal
-        if (distanciaX > distanciaY)
+        Debug.Log("X: " + distanciaX + " Y: " + distanciaY);
+        Debug.Log("minimum: " + minimumDistance);
+        if (distanciaX > minimumDistance && distanciaY > minimumDistance)
         {
-            canDesroy = true;
-            cubeHorizontal = true;
-            //Debug.Log("Podemos destruirlo Horizontal");
+            // Si nos desplazamos mas sobre el eje x = corte horizontal
+            if (distanciaX > distanciaY)
+            {
+                canDesroy = true;
+                cubeHorizontal = true;
+                //Debug.Log("Podemos destruirlo Horizontal");
+            }
+            else if (distanciaX < distanciaY)
+            {
+                canDesroy = true;
+                cubeVertical = true;
+                //Debug.Log("Podemos destruirlo Vertical");
+            }
         }
-        else if (distanciaX < distanciaY)
-        {
-            canDesroy = true;
-            cubeVertical = true;
-            //Debug.Log("Podemos destruirlo Vertical");
-        }
-
-        // if (iniPosition.y > endPosition.y || iniPosition.y < endPosition.y)
-        // {
-            
-        // }
-
     }
 }
