@@ -19,6 +19,9 @@ public class AccionClick : MonoBehaviour
     // Distancia minima para drag
     public float minimumDistance = 20;
 
+    // Flag In drag
+    bool inDrag = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +56,8 @@ public class AccionClick : MonoBehaviour
 
     public void EndClick()
     {
+        inDrag = false;
+
         endPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
         //Debug.Log("End " + endPosition);
         CreatePlane();
@@ -60,17 +65,21 @@ public class AccionClick : MonoBehaviour
 
     public void DragClick()
     {
-        endPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
-        //Debug.Log("Estamos en drag: " + endPosition);
-        CreatePlane();
+        if (inDrag == false)
+        {
+            inDrag = true;
+            endPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
+            //Debug.Log("Estamos en drag: " + endPosition);
+            CreatePlane();
 
-        StartCoroutine(WaitTimeDrag());
-        //endPosition = null;
+            StartCoroutine(WaitTimeDrag());
+            //endPosition = null;   
+        }
     }
 
     IEnumerator WaitTimeDrag()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
     }
 
     public void CreatePlane()

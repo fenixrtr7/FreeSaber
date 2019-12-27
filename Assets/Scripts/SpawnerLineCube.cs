@@ -21,13 +21,6 @@ public class SpawnerLineCube : MonoBehaviour
 
         RandomInstantiateCube();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void RandomInstantiateCube()
     {
         for (int i = 0; i < lengthCube; i++)
