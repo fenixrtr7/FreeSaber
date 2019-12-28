@@ -3212,8 +3212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedCube: 7.5
-  minLimitSpeed: 6.5
-  maxLimitSpeed: 8
+  minLimitSpeed: 7.5
+  maxLimitSpeed: 9
 --- !u!4 &1875889193
 Transform:
   m_ObjectHideFlags: 0

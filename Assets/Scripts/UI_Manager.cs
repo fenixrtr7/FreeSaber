@@ -96,6 +96,13 @@ public class UI_Manager : MonoBehaviour
             //Debug.Log("Funciona");
         }
         scoreGame += pointsToAdd;
+
+        // Score no < 0
+        if(scoreGame <= 0)
+        {
+            scoreGame = 0;
+        }
+        
         scoreText.text = "Score: " + scoreGame;
         StartCoroutine(BackMaterial());
     }

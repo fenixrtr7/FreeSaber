@@ -32,7 +32,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Level Selected
         seedSelectedLevel = Random.Range(0,9999);
+
         // Seleciconar la seed
         Random.seed = seedSelectedLevel;
     }
