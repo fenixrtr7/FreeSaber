@@ -651,7 +651,7 @@ MonoBehaviour:
   cubeVertical: 0
   cubeHorizontal: 0
   canDesroy: 0
-  timeLimit: 0.2
+  timeLimit: 0.05
   minimumDistance: 5
 --- !u!1 &413208600
 GameObject:
@@ -2632,7 +2632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameState: 0
-  seedSelected: 10
+  seedSelectedLevel: 1
 --- !u!1 &1553369963
 GameObject:
   m_ObjectHideFlags: 0

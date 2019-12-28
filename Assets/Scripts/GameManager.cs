@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public static GameManager sharedInstance; // Uso de singleton
 
     // Seed
-    public int seedSelected = 1;
+    public int seedSelectedLevel = 1;
 
     private void Awake()
     {
@@ -32,8 +32,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        seedSelectedLevel = Random.Range(0,9999);
         // Seleciconar la seed
-        //Random.seed = seedSelected;
+        Random.seed = seedSelectedLevel;
     }
 
     // Update is called once per frame

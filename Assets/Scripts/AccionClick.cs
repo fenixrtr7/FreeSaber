@@ -91,9 +91,9 @@ public class AccionClick : MonoBehaviour
         float distanciaX = Vector3.Distance(new Vector3(iniPosition.x, 0, 0), new Vector3(endPosition.x, 0, 0));
         float distanciaY = Vector3.Distance(new Vector3(0, iniPosition.y, 0), new Vector3(0, endPosition.y, 0));
 
-        Debug.Log("X: " + distanciaX + " Y: " + distanciaY);
-        Debug.Log("minimum: " + minimumDistance);
-        if (distanciaX > minimumDistance && distanciaY > minimumDistance)
+        //Debug.Log("X: " + distanciaX + " Y: " + distanciaY);
+        //Debug.Log("minimum: " + minimumDistance);
+        if (distanciaX > minimumDistance || distanciaY > minimumDistance)
         {
             // Si nos desplazamos mas sobre el eje x = corte horizontal
             if (distanciaX > distanciaY)
