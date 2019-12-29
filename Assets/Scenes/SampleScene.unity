@@ -1177,7 +1177,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7, y: -23, z: 11, w: 5.6e-44}
+  m_BoundingSphereOverride: {x: 11, y: -12, z: 9, w: 1.7e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -3213,7 +3213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedCube: 7.5
   minLimitSpeed: 7.5
-  maxLimitSpeed: 9
+  maxLimitSpeed: 12
 --- !u!4 &1875889193
 Transform:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class AccionClick : MonoBehaviour
     public bool canDesroy = false;
     float timePass = 0;
     // Tiempo limite para ya no contar
-    public float timeLimit = 0.2f;
+    public float timeLimit = 0.1f;
     // Distancia minima para drag
     public float minimumDistance = 20;
 
@@ -32,7 +32,7 @@ public class AccionClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Temporizador para devolver a flaso valor
+        // Temporizador para devolver a falso valor
         if (canDesroy)
         {
             timePass += Time.deltaTime;
@@ -93,6 +93,8 @@ public class AccionClick : MonoBehaviour
 
         //Debug.Log("X: " + distanciaX + " Y: " + distanciaY);
         //Debug.Log("minimum: " + minimumDistance);
+
+        // Cumplir distancia recorrida minima
         if (distanciaX > minimumDistance || distanciaY > minimumDistance)
         {
             // Si nos desplazamos mas sobre el eje x = corte horizontal
