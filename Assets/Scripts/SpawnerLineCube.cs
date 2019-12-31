@@ -38,6 +38,8 @@ public class SpawnerLineCube : MonoBehaviour
     public void ChangeZone(GameObject objectChange)
     {
         addPosition += 5;
+        //Debug.Log("Valor de Posición: " + addPosition);
+        
         objectChange.transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + addPosition); 
     
         objectChange.GetComponent<DetectedCube>().ChangeMaterialOriginal();

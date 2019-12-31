@@ -7,8 +7,9 @@ public class UI_Manager : MonoBehaviour
 {
     public static UI_Manager sharedInstance;
     [Header("Score")]
-    public Text scoreText;
-    int scoreGame = 0;
+    public Text scoreText, multipliText;
+    float scoreGame = 0;
+    float multipliNumber = 1;
     public GameObject cuboIndicadorWin;
     public Material materialACambiarGood, materialBad, meterialVeryGood;
     public Material materialActual;
@@ -41,6 +42,7 @@ public class UI_Manager : MonoBehaviour
     void Start()
     {
         scoreText.text = "Score: " + scoreGame;
+        //ime.timeScale = 0.3f;
     }
 
     // Update is called once per frame
@@ -63,7 +65,7 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
-    public void AddPoint(int pointsToAdd)
+    public void AddPoint(float pointsToAdd)
     {
         // Reproducioms particulas
         
@@ -77,6 +79,7 @@ public class UI_Manager : MonoBehaviour
             //Cambiamos el material del cubo
             cuboIndicadorWin.GetComponent<MeshRenderer> ().material = materialACambiarGood;
             //Debug.Log("Funciona");
+            RestetMultipli();
         }
         else if(pointsToAdd < 0)
         {
@@ -86,6 +89,7 @@ public class UI_Manager : MonoBehaviour
             //Cambiamos el material del cubo
             cuboIndicadorWin.GetComponent<MeshRenderer> ().material = materialBad;
             //Debug.Log("Funciona x2");
+            RestetMultipli();
         }
         else if(pointsToAdd > 30)
         {
@@ -95,7 +99,10 @@ public class UI_Manager : MonoBehaviour
             cuboIndicadorWin.GetComponent<MeshRenderer> ().material = meterialVeryGood;
             //Debug.Log("Funciona");
         }
+        // Se multiplica el Score
+        pointsToAdd *= multipliNumber;
         scoreGame += pointsToAdd;
+        //Debug.Log("Score: " + scoreGame);
 
         // Score no < 0
         if(scoreGame <= 0)
@@ -116,9 +123,24 @@ public class UI_Manager : MonoBehaviour
     }
 
     // Mostramos en pantalla puntos
-    void ShowNumber(int pointsShow)
+    void ShowNumber(float pointsShow)
     {
         var clone = (GameObject)Instantiate(numberPrefab, instantiatePoint.transform.position, instantiatePoint.transform.rotation);
         clone.GetComponent<DamageNumber>().damagePoints = pointsShow;
+    }
+
+    // Suma al multiplicador
+    public void AddMultiPoints()
+    {
+        multipliNumber += 0.2f;
+        multipliText.text = "x" + multipliNumber;
+        Debug.Log("Multiplicador: " + multipliNumber);
+    }
+
+    // Reset para pultiplicador
+    public void RestetMultipli()
+    {
+        multipliNumber = 1;
+        multipliText.text = "x" + multipliNumber;
     }
 }

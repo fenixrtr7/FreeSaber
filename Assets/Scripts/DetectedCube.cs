@@ -10,8 +10,8 @@ public class DetectedCube : MonoBehaviour
 
     AccionClick actionClick;
     SendPoints sendPoints;
-    
-    bool inZone = false;
+
+    bool inZone = false, inCondition = false;
 
     int penalization = -10;
 
@@ -19,9 +19,9 @@ public class DetectedCube : MonoBehaviour
     SpawnerLineCube spawnerLineCube;
 
     // Zones
-    public bool zone1 = false, zone2 = false;
+    bool actuveUpdate = true;
 
-    private void Start() 
+    private void Start()
     {
         //this.GetComponentInChildren<MeshRenderer>().material;
         childObj = this.gameObject.transform.GetChild(0);
@@ -31,9 +31,10 @@ public class DetectedCube : MonoBehaviour
 
         spawnerLineCube = FindObjectOfType<SpawnerLineCube>();
     }
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other)
+    {
         //Debug.Log("Enter");
-        if(other.CompareTag("Zone"))
+        if (other.CompareTag("Zone"))
         {
             //Debug.Log("Enter the zone");
             childObj.GetComponentInChildren<MeshRenderer>().material = materialChange;
@@ -42,39 +43,55 @@ public class DetectedCube : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other) {
-        if(other.CompareTag("Zone"))
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Zone"))
         {
             inZone = false;
         }
     }
 
-    private void Update() 
+    private void Update()
     {
-        if ((isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy) || 
-        (!isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy))
+        if (actuveUpdate)
         {
-            // Cambia de posición al cubo
-            spawnerLineCube.ChangeZone(gameObject);
-            ChangeMaterialOriginal();
+            if ((isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy) ||
+            (!isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy))
+            {
+                actuveUpdate = false;
 
-             // Add Point
-             sendPoints.SendPointsScore();
-        }
-        else if ((!isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy) || 
-        (isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy))
-        {
-            // Cambia de posición al cubo
-            spawnerLineCube.ChangeZone(gameObject);
-            ChangeMaterialOriginal();
+                // Cambia de posición al cubo
+                spawnerLineCube.ChangeZone(gameObject);
+                ChangeMaterialOriginal();
 
-            // Penalizacón
-            UI_Manager.sharedInstance.AddPoint(penalization);
+                // Add Point
+                sendPoints.SendPointsScore();
+                StartCoroutine(WaitTime());
+            }
+            else if ((!isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy) ||
+            (isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy))
+            {
+                actuveUpdate = false;
+
+                // Cambia de posición al cubo
+                spawnerLineCube.ChangeZone(gameObject);
+                ChangeMaterialOriginal();
+
+                // Penalizacón
+                UI_Manager.sharedInstance.AddPoint(penalization);
+                StartCoroutine(WaitTime());
+            }
         }
     }
 
     public void ChangeMaterialOriginal()
     {
         childObj.GetComponentInChildren<MeshRenderer>().material = materialActual;
+    }
+
+    IEnumerator WaitTime()
+    {
+        yield return new WaitForSeconds(0.1f);
+        actuveUpdate = true;
     }
 }
