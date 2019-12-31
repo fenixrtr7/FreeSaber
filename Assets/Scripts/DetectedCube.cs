@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DetectedCube : MonoBehaviour
 {
+    [Header("Material")]
     public Material materialChange;
     public Material materialActual;
     Transform childObj;
@@ -11,10 +12,11 @@ public class DetectedCube : MonoBehaviour
     AccionClick actionClick;
     SendPoints sendPoints;
 
-    bool inZone = false, inCondition = false;
+    bool inZone = false;
 
     int penalization = -10;
 
+    [Header("Position")]
     public bool isVertical = true;
     SpawnerLineCube spawnerLineCube;
 
@@ -60,9 +62,8 @@ public class DetectedCube : MonoBehaviour
             {
                 actuveUpdate = false;
 
-                // Cambia de posición al cubo
+                // Cambia de posición al cubo y material
                 spawnerLineCube.ChangeZone(gameObject);
-                ChangeMaterialOriginal();
 
                 // Add Point
                 sendPoints.SendPointsScore();
@@ -75,7 +76,6 @@ public class DetectedCube : MonoBehaviour
 
                 // Cambia de posición al cubo
                 spawnerLineCube.ChangeZone(gameObject);
-                ChangeMaterialOriginal();
 
                 // Penalizacón
                 UI_Manager.sharedInstance.AddPoint(penalization);
@@ -84,6 +84,7 @@ public class DetectedCube : MonoBehaviour
         }
     }
 
+    // Cambiar color del material
     public void ChangeMaterialOriginal()
     {
         childObj.GetComponentInChildren<MeshRenderer>().material = materialActual;

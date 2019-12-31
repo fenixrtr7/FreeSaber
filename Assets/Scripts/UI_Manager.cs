@@ -10,6 +10,8 @@ public class UI_Manager : MonoBehaviour
     public Text scoreText, multipliText;
     float scoreGame = 0;
     float multipliNumber = 1;
+
+    [Header("Material")]
     public GameObject cuboIndicadorWin;
     public Material materialACambiarGood, materialBad, meterialVeryGood;
     public Material materialActual;
@@ -17,8 +19,11 @@ public class UI_Manager : MonoBehaviour
     [Header("Time")]
     public Text timeText;
     public float timeGame = 120;
+
+    [Header("Particle")]
     public ParticleSystem particleObj;
 
+    [Header("Prefab")]
     // Instanciar numeros puntos
     public GameObject instantiatePoint;
     public GameObject numberPrefab;
@@ -67,13 +72,9 @@ public class UI_Manager : MonoBehaviour
 
     public void AddPoint(float pointsToAdd)
     {
-        // Reproducioms particulas
-        
-        // Mostramos en pantalla puntos
-        ShowNumber(pointsToAdd);
-
         if(pointsToAdd > 0 && pointsToAdd < 30)
         {
+            // Reproducioms particulas
             particleObj.Play();
 
             //Cambiamos el material del cubo
@@ -93,6 +94,7 @@ public class UI_Manager : MonoBehaviour
         }
         else if(pointsToAdd > 30)
         {
+            // Reproducioms particulas
             particleObj.Play();
 
             //Cambiamos el material del cubo
@@ -101,6 +103,10 @@ public class UI_Manager : MonoBehaviour
         }
         // Se multiplica el Score
         pointsToAdd *= multipliNumber;
+
+        // Mostramos en pantalla puntos
+        ShowNumber(pointsToAdd);
+
         scoreGame += pointsToAdd;
         //Debug.Log("Score: " + scoreGame);
 
