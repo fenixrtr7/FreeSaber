@@ -20,7 +20,7 @@ public class SendPoints : MonoBehaviour
         if(iniCollider.inBox && EndCollider.inBox)
         {
             points *= 2;
-            Debug.Log("PERFECT");
+            //Debug.Log("PERFECT");
             UI_Manager.sharedInstance.AddMultiPoints();
         }
 
