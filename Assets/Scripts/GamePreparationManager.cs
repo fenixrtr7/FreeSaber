@@ -26,12 +26,15 @@ public class GamePreparationManager : MonoBehaviour, EAZGamePreparationDelegate,
     public static long currentScore = 0;
     public static long oppScore = 0;
     public static bool playing = false;
-    public static float timeGame = 120;
+    public static float timeGame;
+    public float defectTime = 20;
     //public static int endDate = 0;
     //public static int gameDuration = 0;
  
     private void Awake()
     {
+        timeGame = defectTime;
+
         PlayerPrefs.DeleteAll();
         if (instance == null)
         {
@@ -54,18 +57,20 @@ public class GamePreparationManager : MonoBehaviour, EAZGamePreparationDelegate,
     }
  
 #if MULTIPLE_SCENES_LEVELS
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    public void OnSceneLoaded()
     {
-        // #if LOADING_SCENE
-        // if (arg0.name == "{Loading scene name}")
-        // {
-        //     SceneManager.LoadSceneAsync("Level" + levelList[currentLevel]);
-        // }
-        // #endif
- 
-        if (arg0.name == "Level" + levelList[0])
+        #if LOADING_SCENE
+        if (SceneManager.GetActiveScene().name == "LoadScene")
         {
-            //endDate = Epoch.Current() + gameDuration;
+            SceneManager.LoadSceneAsync("GameScene");
+        }
+        #endif
+ 
+        if (SceneManager.GetActiveScene().name == "GameScene")
+        {
+
+            
+            Debug.Log("Pasamos");
             didStartPlaying();
             playing = true;
         }
@@ -88,6 +93,8 @@ public class GamePreparationManager : MonoBehaviour, EAZGamePreparationDelegate,
     {
         // Level Selected
         currentLevel = Random.Range(0,9999);
+        Debug.Log("Current level: " + currentLevel);
+        
         // Select seed
         Random.seed = currentLevel;
 
@@ -181,7 +188,10 @@ public class GamePreparationManager : MonoBehaviour, EAZGamePreparationDelegate,
 //             EndGame();
 //         }
 //    }
-    public static void EndGame(){
+    public void RestartValorGame()
+    {
+        timeGame = defectTime;
+
         currentLevel = 0;
         currentScore = 0;
         oppScore = 0;

@@ -1,12 +1,5 @@
 
-
 shake
 
-pausa entre caida de cubos
-
 poner musica
-
-alertar al jugador de que faltan 10 segundos
-
-BOTON LEAVE
 

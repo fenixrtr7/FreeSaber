@@ -62,7 +62,10 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GamePreparationManager.instance.RestartValorGame();
+        BackToMenu();
+
+        SceneManager.LoadScene(0);
     }
 
     // Cambiar estado de juego
@@ -87,7 +90,10 @@ public class GameManager : MonoBehaviour
         else if (newGameState == GameState.gameOver)
         {
             MenuManager.sharedInstance.ShowGameOver();
-            Debug.Log("Nuevo estado GAME OVER");
+
+            GamePreparationManager.instance.FinishGame(GamePreparationManager.currentScore);
+
+            Debug.Log("Nuevo estado GAME OVER. Score: " + GamePreparationManager.currentScore);
         }
 
         //Update current State

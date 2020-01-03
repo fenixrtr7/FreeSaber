@@ -14,9 +14,15 @@ public class SpawnerLineCube : MonoBehaviour
     Vector3 transformActual;
     int addPosition;
 
+    //Contador para pausa
+    public int counterPause, currentCounterPause = 15;
+
     // Start is called before the first frame update
     void Start()
     {
+        // Set value to counter
+        counterPause = currentCounterPause;
+
         transformActual = this.transform.position;
 
         RandomInstantiateCube();
@@ -43,5 +49,14 @@ public class SpawnerLineCube : MonoBehaviour
         objectChange.transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + addPosition); 
     
         objectChange.GetComponent<DetectedCube>().ChangeMaterialOriginal();
+        counterPause--;
+
+        if (counterPause <= 0)
+        {
+            // Set value to counter
+            counterPause = currentCounterPause;
+            addPosition += 25;
+        }
     }
+    
 }
