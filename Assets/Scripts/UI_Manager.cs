@@ -18,7 +18,6 @@ public class UI_Manager : MonoBehaviour
     
     [Header("Time")]
     public Text timeText;
-    public float timeGame = 120;
 
     [Header("Particle")]
     public ParticleSystem particleObj;
@@ -47,7 +46,6 @@ public class UI_Manager : MonoBehaviour
     void Start()
     {
         scoreText.text = "Score: " + scoreGame;
-        //ime.timeScale = 0.3f;
     }
 
     // Update is called once per frame
@@ -55,17 +53,17 @@ public class UI_Manager : MonoBehaviour
     {
         if (GameManager.sharedInstance.currentGameState == GameState.inGame)
         {
-            timeText.text = "Time: " + timeGame.ToString("0.0");
+            timeText.text = "Time: " + Epoch.GetTimerString((int)GamePreparationManager.timeGame);
 
-            if (timeGame <= 0)
+            if (GamePreparationManager.timeGame <= 0)
             {
-                timeGame = 0;
+                GamePreparationManager.timeGame = 0;
 
                 GameManager.sharedInstance.GameOver();
             }
             else
             {
-                timeGame -= Time.deltaTime;
+                GamePreparationManager.timeGame -= Time.deltaTime;
             }
         }
     }
