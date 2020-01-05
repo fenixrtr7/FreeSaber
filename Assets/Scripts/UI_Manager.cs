@@ -41,8 +41,7 @@ public class UI_Manager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        Debug.Log("Counter: "  + counterTime);
+        //Debug.Log("Counter: "  + counterTime);
     }
 
     // Start is called before the first frame update

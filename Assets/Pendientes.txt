@@ -1,5 +1,10 @@
 
 shake
 
-poner musica
+ocultar oponente score
 
+"Music: www.bensound.com" or "Royalty Free Music from Bensound" 
+
+"Music: www.bensound.com" or "Royalty Free Music from Bensound" 
+
+https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Ziklibrenbib/Bisou/Musical_spaceshift/Bisou_-_05_-_Reloveolution_ft_Zaira_Zen.mp3
