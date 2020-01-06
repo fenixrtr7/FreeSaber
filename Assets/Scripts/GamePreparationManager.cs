@@ -6,7 +6,7 @@
  
 using System.Collections.Generic;
 using System.Linq;
-using EazeGamesSDK;
+// using EazeGamesSDK;
 #if FCM_PRESENT
 //using Firebase.Messaging;
 #endif
@@ -14,20 +14,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
  
  
-public class GamePreparationManager : MonoBehaviour, EAZGamePreparationDelegate, EAZGamePlayDelegate
+public class GamePreparationManager : MonoBehaviour//, EAZGamePreparationDelegate, EAZGamePlayDelegate
 {
     public static GamePreparationManager instance;
     public static event System.Action DidEndGameEvent;
     public static event System.Action WaitingForOpponentEvent;
     public static event System.Action<long> DidReceiveOpponentsScoreEvent;
-    public static event System.Action<EAZGameStartInfo> DidReceiveStartGameInfo;
+    //public static event System.Action<EAZGameStartInfo> DidReceiveStartGameInfo;
     public static List<int> levelList = new List<int>();
     public static int currentLevel = 0;
     public static long currentScore = 0;
     public static long oppScore = 0;
     public static bool playing = false;
     public static float timeGame;
-    public float defectTime = 20;
+    public float defectTime = 120;
     //public static int endDate = 0;
     //public static int gameDuration = 0;
  
@@ -49,7 +49,7 @@ public class GamePreparationManager : MonoBehaviour, EAZGamePreparationDelegate,
 //             SceneManager.sceneLoaded += OnSceneLoaded;
 // #endif
    
-            EazeGames.shared.gamePreparationManager.setPreparationDelegate(this); 
+            //EazeGames.shared.gamePreparationManager.setPreparationDelegate(this); 
         }
         else if (instance != this)
             //Prevents multiple API calls on Initial scene reload
@@ -81,7 +81,7 @@ public class GamePreparationManager : MonoBehaviour, EAZGamePreparationDelegate,
  
     private void gameDidLoad()
     {
-        EazeGames.shared.gamePreparationManager.gameDidLoad();
+        //EazeGames.shared.gamePreparationManager.gameDidLoad();
     }
  
     public void startLoadingGameResourcesFor(string gameId)
@@ -89,7 +89,7 @@ public class GamePreparationManager : MonoBehaviour, EAZGamePreparationDelegate,
         gameDidLoad();
     }
     public void provideGameControllerWithStartGameInfo(
-     EAZGameStartInfo startGameInfo)
+     /*EAZGameStartInfo startGameInfo*/)
     {
         // Level Selected
         currentLevel = Random.Range(0,9999);
@@ -104,7 +104,7 @@ public class GamePreparationManager : MonoBehaviour, EAZGamePreparationDelegate,
     //     levelList = startGameInfo.levels.Split('-').Select(int.Parse).ToList();
     // #endif
  
-        EazeGames.shared.gamePlayManager.setGamePlayDelegate(this);
+        //EazeGames.shared.gamePlayManager.setGamePlayDelegate(this);
         
    
         //endDate = Epoch.Current() + gameDuration;
@@ -146,24 +146,24 @@ public class GamePreparationManager : MonoBehaviour, EAZGamePreparationDelegate,
  
     public void didStartPlaying()
     {
-        EazeGames.shared.gamePlayManager.didStartPlaying();
+        //EazeGames.shared.gamePlayManager.didStartPlaying();
     }  
  
     //
     public void SendScore(long gameScore)
     {
         currentScore = gameScore;
-        EazeGames.shared.gamePlayManager.sendScore(gameScore);
+        //EazeGames.shared.gamePlayManager.sendScore(gameScore);
     }   
  
     public void FinishGame(long finalScore)
     {
-        EazeGames.shared.gamePlayManager.finishPlayingWithFinalScore(finalScore);
+        //EazeGames.shared.gamePlayManager.finishPlayingWithFinalScore(finalScore);
     }
  
     public void LeaveGame()
     {
-        EazeGames.shared.gamePlayManager.leaveGame();
+        //EazeGames.shared.gamePlayManager.leaveGame();
     }
     #endregion
     #region PushManagament

@@ -1,7 +1,11 @@
 
-shake
+- implementar movimiento cuando da un mal golpe
 
-ocultar oponente score
+- pausar musica al perder
+
+- ocultar oponente score
+
+- crear y mostrar panel para creditos musica
 
 "Music: www.bensound.com" or "Royalty Free Music from Bensound" 
 
