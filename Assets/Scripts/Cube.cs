@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetectedCube : MonoBehaviour
+public class Cube : MonoBehaviour
 {
     [Header("Material")]
     public Material materialChange;
@@ -21,7 +21,11 @@ public class DetectedCube : MonoBehaviour
     SpawnerLineCube spawnerLineCube;
 
     // Zones
-    bool actuveUpdate = true;
+    bool activeUpdate = true;
+
+    [Header("Rotation")]
+    public float smoothTime;
+    public float tiltAroundY = 100;
 
     private void Start()
     {
@@ -55,32 +59,31 @@ public class DetectedCube : MonoBehaviour
 
     private void Update()
     {
-        if (actuveUpdate)
+        if (activeUpdate)
         {
             if ((isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy) ||
             (!isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy))
             {
-                actuveUpdate = false;
+                activeUpdate = false;
 
                 // Cambia de posición al cubo y material
                 spawnerLineCube.ChangeZone(gameObject);
 
                 // Add Point
                 sendPoints.SendPointsScore();
-                StartCoroutine(WaitTime());
             }
             else if ((!isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy) ||
             (isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy))
             {
-                actuveUpdate = false;
+                activeUpdate = false;
 
                 // Cambia de posición al cubo
                 spawnerLineCube.ChangeZone(gameObject);
 
                 // Penalizacón
                 UI_Manager.sharedInstance.AddPoint(penalization);
-                StartCoroutine(WaitTime());
             }
+            StartCoroutine(WaitTime());
         }
     }
 
@@ -93,6 +96,18 @@ public class DetectedCube : MonoBehaviour
     IEnumerator WaitTime()
     {
         yield return new WaitForSeconds(0.1f);
-        actuveUpdate = true;
+        activeUpdate = true;
+    }
+
+    public IEnumerator RotateCube()
+    {
+        //Anim rotate ###########
+
+        //Quaternion target = Quaternion.Euler(0, tiltAroundY, 0);
+
+        // //Rotamos el cubo
+        // transform.rotation = Quaternion.Slerp(transform.rotation, target, smoothTime);
+
+        yield return null;
     }
 }

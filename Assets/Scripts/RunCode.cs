@@ -9,10 +9,4 @@ public class RunCode : MonoBehaviour
     {
         GamePreparationManager.instance.OnSceneLoaded();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

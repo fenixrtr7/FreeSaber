@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5541053097656644312}
   - component: {fileID: 4537103513019262273}
   - component: {fileID: 2307186364002337580}
-  - component: {fileID: 7135116215555923087}
+  - component: {fileID: -3595463430203251359}
   - component: {fileID: -8214934471488179317}
   m_Layer: 0
   m_Name: CubeBeat Blue Vertical
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7135116215555923087
+--- !u!114 &-3595463430203251359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,14 +103,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6675117863170211302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f7aa690f1c3a014aa5b943fba1f9581, type: 3}
+  m_Script: {fileID: 11500000, guid: 29bc4c78f0af382469021b2b99e4cb81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   materialChange: {fileID: 2100000, guid: 86de4e59355f35d4893a16000ab151f0, type: 2}
   materialActual: {fileID: 2100000, guid: 32aa48efd9e5317438c66ba51af678cb, type: 2}
   isVertical: 1
-  zone1: 0
-  zone2: 0
+  smoothTime: 1
+  tiltAroundY: 90
 --- !u!54 &-8214934471488179317
 Rigidbody:
   m_ObjectHideFlags: 0

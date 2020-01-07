@@ -48,7 +48,7 @@ public class SpawnerLineCube : MonoBehaviour
         
         objectChange.transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + addPosition); 
     
-        objectChange.GetComponent<DetectedCube>().ChangeMaterialOriginal();
+        objectChange.GetComponent<Cube>().ChangeMaterialOriginal();
         counterPause--;
 
         if (counterPause <= 0)

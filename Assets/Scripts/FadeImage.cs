@@ -43,7 +43,7 @@ public class FadeImage : MonoBehaviour
     void ShakeCamera()
     {
         var shakePreset = ProCamera2DShake.Instance.ShakePresets[0];
-        Debug.Log("Shake: " + shakePreset.name);
+        //Debug.Log("Shake: " + shakePreset.name);
 
         ProCamera2DShake.Instance.Shake(shakePreset);
     }

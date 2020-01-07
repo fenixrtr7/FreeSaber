@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerCubes : MonoBehaviour
+public class NA_SpawnerCubes : MonoBehaviour
 {
     public GameObject[] cubeObj;
     public Transform[] points;

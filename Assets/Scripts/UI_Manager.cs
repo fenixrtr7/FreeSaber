@@ -69,6 +69,7 @@ public class UI_Manager : MonoBehaviour
             if (GamePreparationManager.timeGame <= 0)
             {
                 GamePreparationManager.timeGame = 0;
+                // Pause Music
                 selectMusic.PauseMusic();
 
                 GameManager.sharedInstance.GameOver();
