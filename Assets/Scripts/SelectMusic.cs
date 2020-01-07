@@ -19,9 +19,8 @@ public class SelectMusic : MonoBehaviour
         audioSource.Play();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PauseMusic()
     {
-        
+        audioSource.Pause();
     }
 }

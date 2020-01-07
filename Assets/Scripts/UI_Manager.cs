@@ -31,6 +31,9 @@ public class UI_Manager : MonoBehaviour
     // Fade
     public FadeImage fadeImage;
 
+    // Music
+    SelectMusic selectMusic;
+
     private void Awake()
     {
         if (sharedInstance == null)
@@ -42,6 +45,8 @@ public class UI_Manager : MonoBehaviour
             Destroy(gameObject);
         }
         //Debug.Log("Counter: "  + counterTime);
+
+        selectMusic = FindObjectOfType<SelectMusic>();
     }
 
     // Start is called before the first frame update
@@ -64,6 +69,7 @@ public class UI_Manager : MonoBehaviour
             if (GamePreparationManager.timeGame <= 0)
             {
                 GamePreparationManager.timeGame = 0;
+                selectMusic.PauseMusic();
 
                 GameManager.sharedInstance.GameOver();
             }
