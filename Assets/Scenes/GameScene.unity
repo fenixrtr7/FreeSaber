@@ -868,9 +868,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e80a395dbea6f3748b16de43ba28609d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedCube: 8
-  minLimitSpeed: 6.5
-  maxLimitSpeed: 8
 --- !u!4 &453823766
 Transform:
   m_ObjectHideFlags: 0
@@ -3447,7 +3444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605890245}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 7.7}
+  m_LocalPosition: {x: 0, y: 0, z: 8}
   m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1064313094}

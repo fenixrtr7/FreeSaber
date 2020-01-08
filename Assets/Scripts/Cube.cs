@@ -18,17 +18,21 @@ public class Cube : MonoBehaviour
 
     [Header("Position")]
     public bool isVertical = true;
+    bool isVerticalDef;
     SpawnerLineCube spawnerLineCube;
-
-    // Zones
-    bool activeUpdate = true;
 
     [Header("Rotation")]
     public float smoothTime;
     public float tiltAroundY = 100;
+    // Animator
+    Animator animator;
+
+    // Zones
+    bool activeUpdate = true;
 
     private void Start()
     {
+        isVerticalDef = isVertical;
         //this.GetComponentInChildren<MeshRenderer>().material;
         childObj = this.gameObject.transform.GetChild(0);
 
@@ -36,6 +40,9 @@ public class Cube : MonoBehaviour
         sendPoints = FindObjectOfType<SendPoints>();
 
         spawnerLineCube = FindObjectOfType<SpawnerLineCube>();
+
+        // Animator
+        animator = GetComponent<Animator>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -109,5 +116,19 @@ public class Cube : MonoBehaviour
         // transform.rotation = Quaternion.Slerp(transform.rotation, target, smoothTime);
 
         yield return null;
+    }
+
+    public void ActiveAnimationRotate(bool isRotate)
+    {
+        animator.SetBool("isRotate", isRotate);
+
+        if (isRotate == true)
+        {
+            isVertical = !isVertical;  
+        }
+        else
+        {
+            isVertical = isVerticalDef;
+        }
     }
 }

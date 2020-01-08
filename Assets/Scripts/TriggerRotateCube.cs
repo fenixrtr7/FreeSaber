@@ -6,10 +6,12 @@ public class TriggerRotateCube : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.CompareTag("Cubo"))
+        bool isChange  = (Random.value > 0.5f);
+
+        if (other.CompareTag("Cubo") && isChange)
         {
             Debug.Log("Rotamos");
-            StartCoroutine(other.GetComponent<Cube>().RotateCube());
+            other.GetComponent<Cube>().ActiveAnimationRotate(true);
         }
     }
 }
