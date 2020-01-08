@@ -9,17 +9,9 @@ public class Cube : MonoBehaviour
     public Material materialActual;
     Transform childObj;
 
-    AccionClick actionClick;
-    SendPoints sendPoints;
-
-    bool inZone = false;
-
-    int penalization = -10;
-
     [Header("Position")]
     public bool isVertical = true;
     bool isVerticalDef;
-    SpawnerLineCube spawnerLineCube;
 
     [Header("Rotation")]
     public float smoothTime;
@@ -36,11 +28,6 @@ public class Cube : MonoBehaviour
         //this.GetComponentInChildren<MeshRenderer>().material;
         childObj = this.gameObject.transform.GetChild(0);
 
-        actionClick = FindObjectOfType<AccionClick>();
-        sendPoints = FindObjectOfType<SendPoints>();
-
-        spawnerLineCube = FindObjectOfType<SpawnerLineCube>();
-
         // Animator
         animator = GetComponent<Animator>();
     }
@@ -51,46 +38,6 @@ public class Cube : MonoBehaviour
         {
             //Debug.Log("Enter the zone");
             childObj.GetComponentInChildren<MeshRenderer>().material = materialChange;
-
-            inZone = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Zone"))
-        {
-            inZone = false;
-        }
-    }
-
-    private void Update()
-    {
-        if (activeUpdate)
-        {
-            if ((isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy) ||
-            (!isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy))
-            {
-                activeUpdate = false;
-
-                // Cambia de posición al cubo y material
-                spawnerLineCube.ChangeZone(gameObject);
-
-                // Add Point
-                sendPoints.SendPointsScore();
-            }
-            else if ((!isVertical && inZone && actionClick.cubeVertical && actionClick.canDesroy) ||
-            (isVertical && inZone && actionClick.cubeHorizontal && actionClick.canDesroy))
-            {
-                activeUpdate = false;
-
-                // Cambia de posición al cubo
-                spawnerLineCube.ChangeZone(gameObject);
-
-                // Penalizacón
-                UI_Manager.sharedInstance.AddPoint(penalization);
-            }
-            StartCoroutine(WaitTime());
         }
     }
 
