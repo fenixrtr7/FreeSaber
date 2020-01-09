@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    [Header("Material")]
-    public Material materialChange;
-    public Material materialActual;
+    //[Header("Material")]
+    //public Material materialChange;
+    //public Material materialActual;
     Transform childObj;
 
     [Header("Position")]
@@ -22,14 +22,19 @@ public class Cube : MonoBehaviour
     // Zones
     bool activeUpdate = true;
 
+    // Material
+    Material mymat; 
+
     private void Start()
     {
         isVerticalDef = isVertical;
         //this.GetComponentInChildren<MeshRenderer>().material;
-        childObj = this.gameObject.transform.GetChild(0);
+        //childObj = this.gameObject.transform.GetChild(0);
 
         // Animator
-        animator = GetComponent<Animator>();
+        animator = GetComponentInParent<Animator>();
+
+        mymat = GetComponentInChildren<Renderer>().material;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -37,14 +42,20 @@ public class Cube : MonoBehaviour
         if (other.CompareTag("Zone"))
         {
             //Debug.Log("Enter the zone");
-            childObj.GetComponentInChildren<MeshRenderer>().material = materialChange;
+            ChangeColor(Color.yellow);
         }
     }
 
     // Cambiar color del material
     public void ChangeMaterialOriginal()
     {
-        childObj.GetComponentInChildren<MeshRenderer>().material = materialActual;
+        if (isVertical)
+        {
+            ChangeColor(Color.green);
+        }else
+        {
+            ChangeColor(Color.blue);
+        }
     }
 
     IEnumerator WaitTime()
@@ -77,5 +88,11 @@ public class Cube : MonoBehaviour
         {
             isVertical = isVerticalDef;
         }
+    }
+
+    void ChangeColor(Color color)
+    {
+        // Dar color
+        mymat.SetColor("_EmissionColor", color);
     }
 }
