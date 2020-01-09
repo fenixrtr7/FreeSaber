@@ -115,7 +115,7 @@ public class UI_Manager : MonoBehaviour
 
             //Cambiamos el material del cubo
             //cuboIndicadorWin.GetComponent<MeshRenderer>().material = materialACambiarGood;
-            indicatorCubeFloor.OnFloor();
+            indicatorCubeFloor.OnFloor(Color.yellow);
 
             RestetMultipli();
         }
@@ -125,7 +125,7 @@ public class UI_Manager : MonoBehaviour
             fadeImage.FadeImageObj();
 
             //Change material
-            indicatorCubeFloor.OnFloor();
+            indicatorCubeFloor.OnFloor(Color.red);
             RestetMultipli();
         }
         else if (pointsToAdd > 30)
@@ -134,7 +134,7 @@ public class UI_Manager : MonoBehaviour
             particleObj.Play();
 
             //Change material
-            indicatorCubeFloor.OnFloor();
+            indicatorCubeFloor.OnFloor(Color.green);
         }
         // Se multiplica el Score
         GamePreparationManager.currentScore *= (long)multipliNumber;
