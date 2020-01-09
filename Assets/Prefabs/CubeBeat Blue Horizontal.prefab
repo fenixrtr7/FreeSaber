@@ -159,6 +159,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: flechasParaCubo
       objectReference: {fileID: 0}
+    - target: {fileID: 6789325819111002568, guid: dc61a686e1275c64285ea588015fe6e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7522099914082952155, guid: dc61a686e1275c64285ea588015fe6e9,
         type: 3}
       propertyPath: m_LocalPosition.x

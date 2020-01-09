@@ -12,8 +12,8 @@ public class UI_Manager : MonoBehaviour
 
     [Header("Material")]
     public GameObject cuboIndicadorWin;
-    public Material materialACambiarGood, materialBad, meterialVeryGood;
-    public Material materialActual;
+    //public Material materialACambiarGood, materialBad, meterialVeryGood;
+    //public Material materialActual;
 
     [Header("Time")]
     public Text timeText, regresiveCountText;
@@ -33,6 +33,7 @@ public class UI_Manager : MonoBehaviour
 
     // Music
     SelectMusic selectMusic;
+    IndicatorCubeFloor indicatorCubeFloor;
 
     private void Awake()
     {
@@ -52,6 +53,7 @@ public class UI_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        indicatorCubeFloor = FindObjectOfType<IndicatorCubeFloor>();
         counterTime = 3;
 
         counterStart = true;
@@ -112,8 +114,9 @@ public class UI_Manager : MonoBehaviour
             particleObj.Play();
 
             //Cambiamos el material del cubo
-            cuboIndicadorWin.GetComponent<MeshRenderer>().material = materialACambiarGood;
-            //Debug.Log("Funciona");
+            //cuboIndicadorWin.GetComponent<MeshRenderer>().material = materialACambiarGood;
+            indicatorCubeFloor.OnFloor();
+
             RestetMultipli();
         }
         else if (pointsToAdd < 0)
@@ -121,9 +124,8 @@ public class UI_Manager : MonoBehaviour
             // Fade
             fadeImage.FadeImageObj();
 
-            //Cambiamos el material del cubo
-            cuboIndicadorWin.GetComponent<MeshRenderer>().material = materialBad;
-            //Debug.Log("Funciona x2");
+            //Change material
+            indicatorCubeFloor.OnFloor();
             RestetMultipli();
         }
         else if (pointsToAdd > 30)
@@ -131,9 +133,8 @@ public class UI_Manager : MonoBehaviour
             // Reproducioms particulas
             particleObj.Play();
 
-            //Cambiamos el material del cubo
-            cuboIndicadorWin.GetComponent<MeshRenderer>().material = meterialVeryGood;
-            //Debug.Log("Funciona");
+            //Change material
+            indicatorCubeFloor.OnFloor();
         }
         // Se multiplica el Score
         GamePreparationManager.currentScore *= (long)multipliNumber;
@@ -159,7 +160,7 @@ public class UI_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
 
-        cuboIndicadorWin.GetComponent<MeshRenderer>().material = materialActual;
+        indicatorCubeFloor.OffFloor();
     }
 
     // Mostramos en pantalla puntos

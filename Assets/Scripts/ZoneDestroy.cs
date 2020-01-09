@@ -14,12 +14,6 @@ public class ZoneDestroy : MonoBehaviour
         spawnerLineCube = FindObjectOfType<SpawnerLineCube>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other) 
     {
         if(other.CompareTag("Cubo"))

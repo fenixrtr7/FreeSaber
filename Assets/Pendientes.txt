@@ -1,6 +1,4 @@
 
 - mostrar puntuación en game over
 
-- hacer gir
-
 - ocultar oponente score

@@ -14,7 +14,7 @@ public class MovementLine : MonoBehaviour
     }
 
     //Update is called oncse per frame
-    void Update()
+    void FixedUpdate()
     {
         if(GameManager.sharedInstance.currentGameState == GameState.inGame)
         {

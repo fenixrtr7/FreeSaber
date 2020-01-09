@@ -11,13 +11,16 @@ public class DamageNumber : MonoBehaviour
     public Text damageText;
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
         damageText.text = damagePoints.ToString();
         if (damagePoints < 0)
         {
             damageText.color = Color.red;
         }
+    }
+
+    private void FixedUpdate() {
         this.transform.position = new Vector3( this.transform.position.x, this.transform.localPosition.y + damageSpeed * Time.deltaTime, this.transform.position.z);
     }
 }
