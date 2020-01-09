@@ -10,7 +10,7 @@ public class TriggerRotateCube : MonoBehaviour
 
         if (other.CompareTag("Cubo") && isChange)
         {
-            Debug.Log("Rotamos");
+            //Debug.Log("Rotamos");
             other.GetComponentInChildren<Cube>().ActiveAnimationRotate(true);
         }
     }
