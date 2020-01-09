@@ -37,10 +37,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.R))
         {
             RestartGame();
         }
+    #endif
     }
 
     public void StarGame()

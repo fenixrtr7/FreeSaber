@@ -47,7 +47,7 @@ public class AccionClick : MonoBehaviour
     public void ClickBoton()
     {
             iniPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
-            Debug.Log("ClickBoton");
+            //Debug.Log("ClickBoton");
             cubeHorizontal = false;
             cubeVertical = false;
 
@@ -59,7 +59,7 @@ public class AccionClick : MonoBehaviour
         inDrag = false;
 
         endPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
-        Debug.Log("EndClick");
+        //Debug.Log("EndClick");
         CreatePlane();
     }
 
@@ -69,7 +69,7 @@ public class AccionClick : MonoBehaviour
         {
             inDrag = true;
             endPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
-            Debug.Log("DragClick");
+            //Debug.Log("DragClick");
             CreatePlane();
 
             StartCoroutine(WaitTimeDrag());

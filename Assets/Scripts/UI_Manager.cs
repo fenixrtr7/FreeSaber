@@ -26,7 +26,8 @@ public class UI_Manager : MonoBehaviour
     [Header("Prefab")]
     // Instanciar numeros puntos
     public GameObject instantiatePoint;
-    public GameObject numberPrefab;
+    public GameObject[] numberPrefab;
+    int i = 0;
 
     // Fade
     public FadeImage fadeImage;
@@ -53,6 +54,7 @@ public class UI_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Debug.Log("Largo: "+ numberPrefab.Length);
         indicatorCubeFloor = FindObjectOfType<IndicatorCubeFloor>();
         counterTime = 3;
 
@@ -166,8 +168,20 @@ public class UI_Manager : MonoBehaviour
     // Mostramos en pantalla puntos
     void ShowNumber(float pointsShow)
     {
-        var clone = (GameObject)Instantiate(numberPrefab, instantiatePoint.transform.position, instantiatePoint.transform.rotation);
-        clone.GetComponent<DamageNumber>().damagePoints = pointsShow;
+        //var clone = (GameObject)Instantiate(numberPrefab, instantiatePoint.transform.position, instantiatePoint.transform.rotation);
+        
+        numberPrefab[i].GetComponent<DamageNumber>().damagePoints = pointsShow;
+        numberPrefab[i].SetActive(true);
+        Debug.Log("i: " + i);
+
+
+        if (i == numberPrefab.Length - 1)
+        {
+            i = 0;
+        }else
+        {
+            i++;
+        }
     }
 
     // Suma al multiplicador

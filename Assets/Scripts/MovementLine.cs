@@ -5,12 +5,12 @@ using UnityEngine;
 public class MovementLine : MonoBehaviour
 {
     public float minLimitSpeed = 6.5f, maxLimitSpeed = 8;
-    float speedCube;
+    float speed;
     
     // Start is called before the first frame update
     void Start()
     {
-        speedCube = Random.Range(minLimitSpeed, maxLimitSpeed);
+        speed = Random.Range(minLimitSpeed, maxLimitSpeed);
     }
 
     //Update is called oncse per frame
@@ -18,7 +18,8 @@ public class MovementLine : MonoBehaviour
     {
         if(GameManager.sharedInstance.currentGameState == GameState.inGame)
         {
-            transform.position -= Time.deltaTime * transform.forward * speedCube;
+            //transform.position -= Time.deltaTime * transform.forward * speed;
+            transform.Translate(-Vector3.forward * Time.deltaTime * speed);
         }
     }
 }
