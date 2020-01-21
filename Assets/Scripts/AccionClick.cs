@@ -13,9 +13,14 @@ public class AccionClick : MonoBehaviour
     public bool cubeHorizontal = false;
     [HideInInspector]
     public bool canDesroy = false;
-    float timePass = 0; 
+    float timePass = 0;
     // Tiempo limite para ya no contar
-    public float timeLimit = 0.2f;
+    public float timeLimit = 0.1f;
+    // Distancia minima para drag
+    public float minimumDistance = 20;
+
+    // Flag In drag
+    bool inDrag = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +32,7 @@ public class AccionClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Temporizador para devolver a flaso valor
+        // Temporizador para devolver a falso valor
         if (canDesroy)
         {
             timePass += Time.deltaTime;
@@ -39,49 +44,72 @@ public class AccionClick : MonoBehaviour
         }
     }
 
-    public void ClickBoton() {
-        iniPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
-        //Debug.Log("Inicial " + iniPosition);
-        cubeHorizontal = false;
-        cubeVertical = false;
+    public void ClickBoton()
+    {
+            iniPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
+            //Debug.Log("ClickBoton");
+            cubeHorizontal = false;
+            cubeVertical = false;
 
-        canDesroy = false;
+            canDesroy = false;
     }
 
-    public void EndClick() {
+    public void EndClick()
+    {
+        inDrag = false;
+
         endPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
-        //Debug.Log("End " + endPosition);
+        //Debug.Log("EndClick");
         CreatePlane();
     }
 
-    public void CreatePlane() {
+    public void DragClick()
+    {
+        if (inDrag == false)
+        {
+            inDrag = true;
+            endPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.2f);
+            //Debug.Log("DragClick");
+            CreatePlane();
+
+            StartCoroutine(WaitTimeDrag());
+            //endPosition = null;   
+        }
+    }
+
+    IEnumerator WaitTimeDrag()
+    {
+        yield return new WaitForSeconds(0.05f);
+    }
+
+    public void CreatePlane()
+    {
 
         //     //canDesroy = true;
 
         // Obtener distancias
-        float distanciaX = Vector3.Distance(new Vector3(iniPosition.x,0,0), new Vector3(endPosition.x,0,0));
-        float distanciaY = Vector3.Distance(new Vector3(0,iniPosition.y,0), new Vector3(0,endPosition.y,0));
+        float distanciaX = Vector3.Distance(new Vector3(iniPosition.x, 0, 0), new Vector3(endPosition.x, 0, 0));
+        float distanciaY = Vector3.Distance(new Vector3(0, iniPosition.y, 0), new Vector3(0, endPosition.y, 0));
 
         //Debug.Log("X: " + distanciaX + " Y: " + distanciaY);
+        //Debug.Log("minimum: " + minimumDistance);
 
-        // Si nos desplazamos mas sobre el eje x = corte horizontal
-        if (distanciaX > distanciaY)
+        // Cumplir distancia recorrida minima
+        if (distanciaX > minimumDistance || distanciaY > minimumDistance)
         {
-            canDesroy = true;
-            cubeHorizontal = true;
-            //Debug.Log("Podemos destruirlo Horizontal");
+            // Si nos desplazamos mas sobre el eje x = corte horizontal
+            if (distanciaX > distanciaY)
+            {
+                canDesroy = true;
+                cubeHorizontal = true;
+                //Debug.Log("Podemos destruirlo Horizontal");
+            }
+            else if (distanciaX < distanciaY)
+            {
+                canDesroy = true;
+                cubeVertical = true;
+                //Debug.Log("Podemos destruirlo Vertical");
+            }
         }
-        else if (distanciaX < distanciaY)
-        {
-            canDesroy = true;
-            cubeVertical = true;
-            //Debug.Log("Podemos destruirlo Vertical");
-        }
-
-        // if (iniPosition.y > endPosition.y || iniPosition.y < endPosition.y)
-        // {
-            
-        // }
-
     }
 }

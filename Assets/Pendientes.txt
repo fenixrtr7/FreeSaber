@@ -1,0 +1,10 @@
+
+- mostrar puntuación en game over
+- ocultar oponente score
+
+
+- Quitar 321
+- poner -> Are you sure? -> cuando le das boton "leave"
+- Nuevo diseño (muy basico)
+- el temporizador debe seguir marcando cuando la aplicación se pone en segundo plano
+- Revisar Rendimiento

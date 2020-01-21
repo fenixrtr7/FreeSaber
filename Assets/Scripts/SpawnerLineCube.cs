@@ -14,20 +14,19 @@ public class SpawnerLineCube : MonoBehaviour
     Vector3 transformActual;
     int addPosition;
 
+    //Contador para pausa
+    public int counterPause, currentCounterPause = 15;
+
     // Start is called before the first frame update
     void Start()
     {
+        // Set value to counter
+        counterPause = currentCounterPause;
+
         transformActual = this.transform.position;
 
         RandomInstantiateCube();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void RandomInstantiateCube()
     {
         for (int i = 0; i < lengthCube; i++)
@@ -45,8 +44,23 @@ public class SpawnerLineCube : MonoBehaviour
     public void ChangeZone(GameObject objectChange)
     {
         addPosition += 5;
+        //Debug.Log("Valor de Posición: " + addPosition);
+        
         objectChange.transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + addPosition); 
     
-        objectChange.GetComponent<DetectedCube>().ChangeMaterialOriginal();
+        // Regresa al material anterior
+        objectChange.GetComponent<Cube>().ChangeMaterialOriginal();
+
+        // Regresa animación
+        objectChange.GetComponent<Cube>().ActiveAnimationRotate(false);
+
+        counterPause--;
+        if (counterPause <= 0)
+        {
+            // Set value to counter
+            counterPause = currentCounterPause;
+            addPosition += 25;
+        }
     }
+    
 }

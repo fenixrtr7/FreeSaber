@@ -15,15 +15,14 @@ public class GameManager : MonoBehaviour
 
     public static GameManager sharedInstance; // Uso de singleton
 
-    // Seed
-    public int seedSelected = 1;
-
     private void Awake()
     {
         if(sharedInstance == null)
         {
             sharedInstance = this;
-        }else
+            DontDestroyOnLoad(sharedInstance);
+        }
+        else
         {
             Destroy(gameObject);
         }
@@ -32,17 +31,18 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Seleciconar la seed
-        //Random.seed = seedSelected;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+    #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.R))
         {
             RestartGame();
         }
+    #endif
     }
 
     public void StarGame()
@@ -64,7 +64,10 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GamePreparationManager.instance.RestartValorGame();
+        BackToMenu();
+
+        SceneManager.LoadScene(0);
     }
 
     // Cambiar estado de juego
@@ -89,7 +92,10 @@ public class GameManager : MonoBehaviour
         else if (newGameState == GameState.gameOver)
         {
             MenuManager.sharedInstance.ShowGameOver();
-            Debug.Log("Nuevo estado GAME OVER");
+
+            GamePreparationManager.instance.FinishGame(GamePreparationManager.currentScore);
+
+            Debug.Log("Nuevo estado GAME OVER. Score: " + GamePreparationManager.currentScore);
         }
 
         //Update current State
